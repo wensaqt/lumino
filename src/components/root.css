@@ -1,0 +1,13 @@
+:root {
+    --background: #312F2F;
+    --text: #F7F3E3;
+    --text-highlight: #FFECB3;
+    --nice-blue: #677DB7;
+    --nice-pink: #AB4967;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
