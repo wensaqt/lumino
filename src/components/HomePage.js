@@ -3,9 +3,13 @@ import './HomePage.css'
 
 function HomePage() {
   return (
-    <div>
-      Hello World
-    </div>
+    <section className="homePageContainer">
+      <div className="homePage">
+        <div className="homePage-infos">
+          <div className="luminoLogo"></div>
+        </div>
+      </div>
+    </section>
   );
 }
 

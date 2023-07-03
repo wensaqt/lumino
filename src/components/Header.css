@@ -15,3 +15,31 @@ nav {
     justify-content: space-around;
     align-items: center;
 }
+
+.navLinks li {
+    height: 80%;
+    width: 200px;
+
+    list-style: none;
+
+}
+
+.navLinks-item {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    border-radius: 5px;
+    color: var(--text);
+    transition: all 0.1s ease-in-out;
+}
+
+.navLinks-item:hover {
+    cursor: pointer;
+    background-color: var(--text-highlight);
+    color: var(--background);
+}

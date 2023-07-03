@@ -1,1 +1,36 @@
 @import './root.css';
+
+
+.homePageContainer {
+    min-height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background);
+}
+
+.homePage {
+    width: 80vw;
+}
+
+.homePage-infos {
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.luminoLogo {
+    width: 291.8px;
+    height: 72.8px;
+
+    display: flex;
+
+    background-image: url(../medias/lumino_logo.png);
+    background-position: center;
+    background-size: cover;
+}

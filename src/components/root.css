@@ -6,8 +6,11 @@
     --nice-pink: #AB4967;
 }
 
-
 * {
     margin: 0;
     padding: 0;
+}
+
+a {
+    all: unset;
 }

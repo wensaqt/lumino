@@ -10,6 +10,7 @@ import About from './components/About';
 import Blog from './components/Blog';
 import Article from './components/Article';
 import Halo from './components/Halo';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/blog/article/:id" component={Article} />
         <Route path="/halos/:id" component={Halo} />
       </Switch>
+      <Footer />
     </Router>
   );
 }
