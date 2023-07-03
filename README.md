@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# About Lumino
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Lumino is a project whose idea belonged to a friend of mine, @TheNitroxone, which he allowed me to take over as part of my React.js apprenticeship. It's a blog about video games and new technologies, with a clean, modern design.
+
+## To-do list
+
+- Elaborate main components, structure, and work on UI.
 
 ## Available Scripts
 
