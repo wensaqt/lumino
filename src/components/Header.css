@@ -1,0 +1,17 @@
+@import './root.css';
+
+header {
+    height: 80px;
+    background-color: var(--background);
+}
+
+nav {
+    height: 100%;
+}
+
+.navLinks {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
