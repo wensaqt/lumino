@@ -1,10 +1,10 @@
 import React from 'react';
+import './Footer.css';
 
-
-function Footer() {
+const Footer = () => {
     return (
         <footer>
-            Footer
+            @Wensa & @Nitroxone property
         </footer>
     )
 }

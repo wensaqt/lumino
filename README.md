@@ -7,3 +7,4 @@ Lumino is a project whose idea belonged to a friend of mine, @TheNitroxone, whic
 - Main components appearance, structure, and work on UI.
 - Users' logic, sign-in/up, profile...
 - Article operations: creation, deletion, editing, etc.
+- Halos (which will be extremly difficult)

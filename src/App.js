@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, Outlet } from 'react-router-dom';
 import Header from './components/Header';
 import HomePage from './components/HomePage';
 import SignIn from './components/SignIn';
@@ -10,25 +10,44 @@ import About from './components/About';
 import Blog from './components/Blog';
 import Article from './components/Article';
 import Halo from './components/Halo';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 
-function App() {
+const App = () => {
+
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Root />}>
+        <Route index element={HomePage} />
+        <Route path="/about" element={About} />
+        <Route path="/blog" element={Blog} />
+        <Route path="/halo" element={Halo} />
+        <Route path="/sign-in" element={SignIn} />
+        <Route path="/sign-up" element={SignUp} />
+        <Route path="/blog/article:id" element={Article} />
+        <Route path="/profile" element={Profile} />
+      </Route>
+    )
+  )
   return (
-    <Router>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/signin" component={SignIn} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/about" component={About} />
-        <Route path="/blog" component={Blog} />
-        <Route path="/blog/article/:id" component={Article} />
-        <Route path="/halos/:id" component={Halo} />
-      </Switch>
-      <Footer />
-    </Router>
+    <RouterProvider router={router} />
   );
+}
+
+const Root = () => {
+  return <>
+    <Header />
+    <HomePage />
+    {/* <About />
+    <Blog />
+    <SignIn />
+    <SignUp /> */}
+
+    <div>
+      <Outlet />
+      </div>
+  </>
+
+
 }
 
 export default App;
