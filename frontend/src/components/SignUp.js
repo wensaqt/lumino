@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const SignUp = () => {
     // console.log("SignUp component rendered");
@@ -12,11 +13,16 @@ const SignUp = () => {
         setFormData({...formData, [e.target.name]: e.target.value});
     }
 
-    const handleSubmit = (e) => {
-        alert("handleSubmit")
-        e.preventDefault()
-        console.log(formData)
-    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+      
+        try {
+            const response = await axios.post('http://127.0.0.1:5500/user/signup', formData);
+            console.log(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+    };
 
     return (
         <form action="submit" onSubmit={handleSubmit}>

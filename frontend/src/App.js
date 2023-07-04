@@ -10,7 +10,7 @@ import About from './components/About';
 import Blog from './components/Blog';
 import Article from './components/Article';
 import Halo from './components/Halo';
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
 
 const App = () => {
 
@@ -40,6 +40,8 @@ const Root = () => {
     <div>
       <Outlet />
       </div>
+
+      <Footer />
   </>
 
 
