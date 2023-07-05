@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { Op } from 'sequelize';
 import { User } from '../../entities/user.entity';
+import { LoginResponse } from './login-response.interface'
+import * as jwt from 'jsonwebtoken';
 
 // Keep using the UserCreationAttrs interface
 interface UserCreationAttrs {
@@ -27,6 +30,38 @@ export class UserService {
         };
 
         return await this.userModel.create(userData);
+    }
+
+    async logUser(credentials: { identifier: string; password: string }): Promise<LoginResponse | null> {
+        const { identifier, password } = credentials;
+    
+        const user = await this.findUserToLogin(identifier);
+    
+        if (!user) {
+            console.log('user not found');
+            return null;
+        }
+    
+        if(user.password !== password) {
+            console.log('incorrect password');
+            return null;
+        }
+        
+        const token = jwt.sign({ userId: user.id }, 'your-secret-key', { expiresIn: '1h' });
+        console.log('logged user is : ' + user);
+        return { user, token };
+    }
+    
+    private async findUserToLogin(identifier: string): Promise<User | null> {
+        const user = await this.userModel.findOne({
+            where: {
+                [Op.or]: [
+                    { username: identifier },
+                    { email: identifier },
+                ],
+            },
+        });
+        return user;
     }
 
     findAll(): Promise<User[]> {
