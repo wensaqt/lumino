@@ -1,0 +1,45 @@
+@import './root.css';
+
+.welcome-banner {
+    background-color: var(--text-highlight);
+    padding: 1em;
+    border-radius: 5px;
+    position: fixed;
+    transform: translateX(calc(50vw - 50%));
+    z-index: 100;
+    animation: fadeIn 0.5s ease-in, moveBottom 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    50%, 100% { 
+      opacity: 1; 
+    }
+  }
+  
+  @keyframes fadeOut {
+    0%, 50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+}
+
+@keyframes moveBottom {
+    0% {
+        transform: translateY(0)
+    }
+    100% {
+        transform: translateY(50px)
+    }
+}
+
+@keyframes moveTop {
+    0%, 100% {
+        transform: translateY(-50px)
+    }
+}
+    

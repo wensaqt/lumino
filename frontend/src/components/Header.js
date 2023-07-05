@@ -3,20 +3,27 @@ import './Header.css';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logOut } from '../redux/actions/authActions';
+import { useNavigate } from 'react-router-dom'
+import   WelcomeBanner  from './WelcomeBanner';
 
 const Header = () => {
 
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
   const { isAuthenticated, user } = auth;
 
   const handleLogout = () => {
+    navigate('/')
     dispatch(logOut());
     localStorage.removeItem('token');
   };
 
   return (
     <header>
+      { isAuthenticated && user ? (
+        <WelcomeBanner />
+      ) : null }
       <nav>
         <ul className="navLinks">
           <li><Link to="/" className="navLinks-item">Home</Link></li>
