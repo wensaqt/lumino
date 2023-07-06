@@ -22,7 +22,9 @@ const Header = () => {
   return (
     <header>
       { isAuthenticated && user ? (
-        <WelcomeBanner />
+        <div className="bannerContainer">
+          <WelcomeBanner />
+        </div>
       ) : null }
       <nav>
         <ul className="navLinks">

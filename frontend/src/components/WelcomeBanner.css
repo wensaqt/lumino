@@ -1,45 +1,33 @@
 @import './root.css';
 
+.bannerContainer {
+  margin-top: 1em;
+  width: 100%;
+  z-index: 100;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+}
+
 .welcome-banner {
     background-color: var(--text-highlight);
     padding: 1em;
     border-radius: 5px;
-    position: fixed;
-    transform: translateX(calc(50vw - 50%));
-    z-index: 100;
-    animation: fadeIn 0.5s ease-in, moveBottom 0.5s ease-in;
+    animation: notificationPopup 3s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 }
 
-@keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    50%, 100% { 
-      opacity: 1; 
-    }
+@keyframes notificationPopup {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
   }
-  
-  @keyframes fadeOut {
-    0%, 50% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-}
-
-@keyframes moveBottom {
-    0% {
-        transform: translateY(0)
-    }
-    100% {
-        transform: translateY(50px)
-    }
-}
-
-@keyframes moveTop {
-    0%, 100% {
-        transform: translateY(-50px)
-    }
+  20%, 90% {
+    transform: none;
+    opacity: 1;
+  }
+  to {
+    transform: translateY(20px);
+    opacity: 0;
+  }
 }
     

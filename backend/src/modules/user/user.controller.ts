@@ -2,20 +2,21 @@ import { Controller, Post, Body } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from '../../entities/user.entity';
 import { LoginDto } from './login.dto';
-import { LoginResponse } from './login-response.interface'; 
+import LoginResponseDto from './login.response.dto';
+import SignUpDto from './signup.dto';
 
 @Controller('user')
     export class UserController {
         constructor(private readonly userService: UserService) {}
 
         @Post('signup')
-        async signUp(@Body() user: User): Promise<User> {
+        async signUp(@Body() signUpDto: SignUpDto): Promise<User> {
             console.log('user is in controller');
-            return this.userService.createUser(user);
+            return this.userService.createUser(signUpDto);
         }
         
         @Post('login')
-        async signIn(@Body() loginDto: LoginDto): Promise<LoginResponse | null> {
+        async signIn(@Body() loginDto: LoginDto): Promise<LoginResponseDto | null> {
             return this.userService.logUser(loginDto);
-          }
+        }
 }
