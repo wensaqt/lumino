@@ -2,7 +2,7 @@
 
 header {
     height: 80px;
-    background-color: var(--background);
+    background: linear-gradient(to bottom, var(--background), rgba(128, 128, 128, 0));
     position: sticky;
     top: 0;
     z-index: 100;

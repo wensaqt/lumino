@@ -12,6 +12,10 @@ import Article from './components/Article';
 import Halo from './components/Halo';
 import Footer from './components/Footer';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+
+library.add();
+
 const App = () => {
 
   const router = createBrowserRouter(

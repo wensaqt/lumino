@@ -1,0 +1,60 @@
+@import './root.css';
+
+.blogContainer {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.categoryNav-1 h2, .categoryNav-2 h2 {
+    color: var(--text);
+    font-weight: 200;
+}
+
+.addArticleForm {
+    background-color: rgba(0, 0, 0, 0.574);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    position: fixed;
+}
+
+.addArticleForm-form {
+    height: 80%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.addArticleForm input {
+    height: 30px;
+    width: 30%;
+}
+
+#addArticle {
+    height: 15px;
+    width: 15px;
+    background-color: var(--text-highlight);
+    border-radius: 100%;
+    padding: 0.5em;
+    color: var(--background);
+    transition: transform 0.1s ease-in-out;
+}
+
+#addArticle:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#addArticle-content {
+    height: 80%;
+    width: 80%;
+
+}
+

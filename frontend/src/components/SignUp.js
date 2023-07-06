@@ -1,3 +1,4 @@
+import './SignUp.css';
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -25,36 +26,38 @@ const SignUp = () => {
     };
 
     return (
-        <form action="submit" onSubmit={handleSubmit}>
-            <label>
-                Username:
+        <section className="signUpContainer">
+            <form action="submit" onSubmit={handleSubmit}>
+                <label>
+                    Username:
+                </label>
                 <input 
                     type="text" 
                     name="username" 
                     value={formData.username} 
                     onChange={handleChange} 
                 />
-            </label>
-            <label>
-                E-mail:
+                <label>
+                    E-mail:
+                </label>
                 <input 
                     type="email" 
                     name="email" 
                     value={formData.email} 
                     onChange={handleChange} 
                 />
-            </label>
-            <label>
-                Password:
+                <label>
+                    Password:
+                </label>
                 <input 
                     type="password" 
                     name="password" 
                     value={formData.password} 
                     onChange={handleChange} 
                 />
-            </label>
-            <input type="submit" value="Sign up!" />
-        </form>
+                <input type="submit" value="Sign up!" id="submit" />
+            </form>
+        </section>
     );
 }
 
