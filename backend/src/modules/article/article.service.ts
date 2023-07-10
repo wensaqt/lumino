@@ -21,4 +21,8 @@ export class ArticleService {
         };
         return await this.articleModel.create(articleData);
     }
+
+    findAll(): Promise<Article[]> {
+      return this.articleModel.findAll();
+  }
 }
