@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Controller, Post, Body, Get, UploadedFile, UseInterceptors, Put, Param } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
@@ -23,6 +23,21 @@ export class ArticleController {
   async createArticle(@UploadedFile() file, @Body() createArticleDto: CreateArticleDto): Promise<Article> {
     createArticleDto.banner = file.path;
     return this.articleService.createArticle(createArticleDto);
+  }
+
+  @Put('/:id')
+  @UseInterceptors(FileInterceptor('banner', {
+    storage: diskStorage({
+        destination: './uploads',
+        filename: (req, file, cb) => {
+            const randomName = Array(32).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('');
+            return cb(null, `${randomName}${extname(file.originalname)}`);
+        }
+    })
+  }))
+  async updateArticle(@Param('id') id: number, @UploadedFile() file, @Body() createArticleDto: CreateArticleDto): Promise<Article> {
+    if (file) createArticleDto.banner = file.path;
+    return this.articleService.updateArticle(id, createArticleDto);
   }
 
   @Get('/all')

@@ -1,8 +1,10 @@
 import './Article.css'
 import React, { useState, useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Article = ({ article }) => {
+const Article = ({ article, onEditArticle }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [contentHeight, setContentHeight] = useState("0px");
   
@@ -14,6 +16,10 @@ const Article = ({ article }) => {
 
   const handleToggleExpanded = () => {
       setIsExpanded(!isExpanded);
+  };
+
+  const handleEditArticle = () => {
+    onEditArticle(article);
   };
   
   return (
@@ -37,6 +43,7 @@ const Article = ({ article }) => {
       </div>
       <div className="article-footer">
           <div id="readMore-button" onClick={handleToggleExpanded}>{isExpanded ? 'Read less' : 'Read more'}</div>
+          <div className="articleMenu"><FontAwesomeIcon icon={faEdit} id="editArticleIcon" onClick={handleEditArticle} /></div>
       </div>
     </section>
   );

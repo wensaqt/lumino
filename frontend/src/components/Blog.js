@@ -12,6 +12,7 @@ import 'react-markdown-editor-lite/lib/index.css';
 
 const Blog = () => {
     const [showAddForm, setShowAddForm] = useState(false);
+    const [editingArticleId, setEditingArticleId] = useState(null);
     const [formData, setFormData] = useState({
         title: '',
         banner: '',
@@ -29,10 +30,10 @@ const Blog = () => {
         dispatch(fetchArticles());
     }, [dispatch]);
 
-	const categories = useSelector(state => state.categories);
+    const categories = useSelector(state => state.categories);
     const articles = useSelector((state) => state.articles);
 
-	let videoGamesArticles = articles.filter(article => article.categoryId === 2);
+    let videoGamesArticles = articles.filter(article => article.categoryId === 2);
     let technologyArticles = articles.filter(article => article.categoryId === 1);
 
     const handleChange = (e) => {
@@ -47,7 +48,7 @@ const Blog = () => {
 
     const handleEditorChange = ({html, text}) => {
         setFormData({...formData, content: text});
-      }
+    }
 
     const handleAddArticle = async (e) => {
         e.preventDefault();
@@ -61,12 +62,21 @@ const Blog = () => {
         formDataToSend.append('categoryId', formData.categoryId);
     
         try {
-            const response = await axios.post('http://127.0.0.1:5500/articles/add', formDataToSend, {
-                headers: {
-                  'Content-Type': 'multipart/form-data',
-                },
-            });
-            console.log(response.data);
+            if(editingArticleId === null){
+                const response = await axios.post('http://127.0.0.1:5500/articles/add', formDataToSend, {
+                    headers: {
+                      'Content-Type': 'multipart/form-data',
+                    },
+                });
+                console.log(response.data);
+            }else{
+                const response = await axios.put(`http://127.0.0.1:5500/articles/${editingArticleId}`, formDataToSend, {
+                    headers: {
+                      'Content-Type': 'multipart/form-data',
+                    },
+                });
+                console.log(response.data);
+            }
     
             setFormData({
                 title: '',
@@ -77,11 +87,18 @@ const Blog = () => {
                 categoryId: ''
             });
             setFile(null);
+            setEditingArticleId(null);
             setShowAddForm(false);
             dispatch(fetchArticles());
         } catch (error) {
             console.error(error);
         }
+    };
+
+    const handleEditArticle = (article) => {
+        setFormData(article);
+        setEditingArticleId(article.id);
+        setShowAddForm(true);
     };
 
     const handleToggleAddForm = () => {
@@ -113,7 +130,7 @@ const Blog = () => {
                                 <option key={category.id} value={category.id}>{category.name}</option>
                             ))}
                         </select>
-                        <button type="submit">Add Article</button>
+                        <button type="submit">{editingArticleId ? "Update Article" : "Add Article"}</button>
                     </form>
                 </div>
             )}
@@ -122,7 +139,7 @@ const Blog = () => {
             </div>
             <div className="videoGamesArticles">
                 {videoGamesArticles.map((article) => (
-                    <Article key={article.id} article={article} />
+                    <Article key={article.id} article={article} onEditArticle={handleEditArticle} />
                 ))}
             </div>
             <div className="categoryNav-2">
@@ -130,7 +147,7 @@ const Blog = () => {
             </div>
             <div className="technologyArticles">
                 {technologyArticles.map((article) => (
-                    <Article key={article.id} article={article} />
+                    <Article key={article.id} article={article} onEditArticle={handleEditArticle} />
                 ))}
             </div>
         </section>
